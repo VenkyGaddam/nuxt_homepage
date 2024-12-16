@@ -20,11 +20,8 @@ FROM node:${NODE_VERSION}-slim as serve
 
 WORKDIR /app
 
-# Copy the built application from the build stage
-COPY --from=build /app/.output .
-
-# Install production dependencies (optional, in case of server-side dependencies)
-RUN npm install --production
+# Copy the entire application from the build stage
+COPY --from=build /app /app
 
 # Expose the Nitro server port (default is 3000)
 EXPOSE 3000
