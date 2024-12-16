@@ -1,0 +1,14 @@
+[
+  {
+    "key": "service",
+    "label": "Service"
+  },
+  {
+    "key": "active",
+    "label": "Active"
+  },
+  {
+    "key": "edit",
+    "label": "Edit"
+  }
+]

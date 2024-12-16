@@ -1,0 +1,19 @@
+[
+  {
+    "key": "symbol",
+    "label": "Stock Symbol",
+    "sortable": true,
+    "class": "w-[10rem] truncate",
+    "rowClass": "w-[10rem] truncate"
+  },
+  {
+    "key": "dividend_amount",
+    "label": "Dividend Amount",
+    "sortable": true
+  },
+  {
+    "key": "dividend_date",
+    "label": "Dividend Date",
+    "sortable": true
+  }
+]

@@ -1,0 +1,200 @@
+[
+  {
+    "id": 1,
+    "service": "Authelia",
+    "description": "Myhive web services SSO",
+    "address": "https://auth.myhive.in",
+    "reverse_proxy": "http://hive:9091",
+    "active": true,
+    "icon": "i-simple-icons:authelia"
+  },
+  {
+    "id": 2,
+    "service": "MyHive",
+    "description": "MyHive homepage",
+    "address": "https://myhive.in",
+    "reverse_proxy": "http://hive:5174",
+    "active": true,
+    "icon": "i-simple-icons:hive"
+  },
+  {
+    "id": 3,
+    "service": "DNS",
+    "description": "DNS server",
+    "address": "https://dns.myhive.in",
+    "reverse_proxy": "http://hive-vpc:3000",
+    "active": true,
+    "icon": "i-carbon:dns-services"
+  },
+  {
+    "id": 4,
+    "service": "Geek Pi - Blog",
+    "description": "Blog server",
+    "address": "https://blog.myhive.in",
+    "reverse_proxy": "http://hive:3001",
+    "active": true,
+    "icon": "i-simple-icons:ghost"
+  },
+  {
+    "id": 5,
+    "service": "Nextcloud",
+    "description": "Personal cloud server for data storage",
+    "address": "https://cloud.myhive.in",
+    "reverse_proxy": "http://hive-x:8080",
+    "active": true,
+    "icon": "i-simple-icons:nextcloud"
+  },
+  {
+    "id": 6,
+    "service": "DB admin",
+    "description": "Postgress DB admin portal",
+    "address": "https://dbadmin.myhive.in",
+    "reverse_proxy": "http://hive:5050",
+    "active": true,
+    "icon": "i-carbon:database-postgresql"
+  },
+  {
+    "id": 7,
+    "service": "ntfy",
+    "description": "ntfy server",
+    "address": "https://notify.myhive.in",
+    "reverse_proxy": "http://hive:4040",
+    "active": true,
+    "icon": "i-hugeicons:message-notification-01"
+  },
+  {
+    "id": 8,
+    "service": "Glass monitor",
+    "description": "Glass server monitoring",
+    "address": "https://monitor.myhive.in",
+    "reverse_proxy": "http://hive:61208",
+    "active": true,
+    "icon": "i-carbon:cloud-monitoring"
+  },
+  {
+    "id": 9,
+    "service": "Postgres DB",
+    "description": "Postrgess DB instance",
+    "address": "https://pgadmin.myhive.in",
+    "reverse_proxy": "http://hive:5053",
+    "active": true,
+    "icon": "i-carbon:database-postgresql"
+  },
+  {
+    "id": 10,
+    "service": "Home Assistant",
+    "description": "Home assistant server instance",
+    "address": "https://ha.myhive.in",
+    "reverse_proxy": "http://homeassistant:8123",
+    "active": true,
+    "icon": "i-simple-icons:homeassistant"
+  },
+  {
+    "id": 11,
+    "service": "Gorcy",
+    "description": "Grocy - Fridge ERP for home",
+    "address": "https://grocy.myhive.in",
+    "reverse_proxy": "http://hive-vpc:9283",
+    "active": true,
+    "icon": "i-arcticons:grocy"
+  },
+  {
+    "id": 12,
+    "service": "lldap server",
+    "description": "Light ldap console to manege users",
+    "address": "https://lldap.myhive.in",
+    "reverse_proxy": "http://ldap://hive:3890",
+    "active": false,
+    "icon": "i-solar:users-group-rounded-bold-duotone"
+  },
+  {
+    "id": 13,
+    "service": "UptimeKuma",
+    "description": "Services status check utility",
+    "address": "https://status.myhive.in",
+    "reverse_proxy": "http://localhost:3001",
+    "active": true,
+    "icon": "i-simple-icons:uptimekuma"
+  },
+  {
+    "id": 14,
+    "service": "lldap QA portal",
+    "description": "Light ldap console to manege users",
+    "address": "https://account.qa.myhive.in",
+    "reverse_proxy": "http://hive:17170",
+    "active": true,
+    "icon": "i-solar:users-group-rounded-bold-duotone"
+  },
+  {
+    "id": 15,
+    "service": "NextCloud QA",
+    "description": "Nextcloud QA environment",
+    "address": "https://cloud.qa.myhive.in",
+    "reverse_proxy": "http://hive:8080",
+    "active": true,
+    "icon": "i-simple-icons:nextcloud"
+  },
+  {
+    "id": 16,
+    "service": "lldap QA server",
+    "description": "ldap server QA",
+    "address": "https://ldap.qa.myhive.in",
+    "reverse_proxy": "http://hive:3890",
+    "active": true,
+    "icon": "i-solar:users-group-rounded-bold-duotone"
+  },
+  {
+    "id": 17,
+    "service": "Git QA",
+    "description": "Gitlab QA environment",
+    "address": "https://git.qa.myhive.in",
+    "reverse_proxy": "http://hive:8929",
+    "active": true,
+    "icon": "i-simple-icons:gitlab"
+  },
+  {
+    "id": 18,
+    "service": "Coder QA",
+    "description": "VS code server",
+    "address": "https://coder.qa.myhive.in",
+    "reverse_proxy": "http://hive:3000",
+    "active": true,
+    "icon": "i-simple-icons:coder"
+  },
+  {
+    "id": 19,
+    "service": "Myhive API",
+    "description": "MyHive api connected to Hive DB",
+    "address": "https://api.qa.myhive.in",
+    "reverse_proxy": "http://hive:3030",
+    "active": true,
+    "icon": "i-carbon:api-1"
+  },
+  {
+    "id": 20,
+    "service": "Myhive QA",
+    "description": "My hive homepage",
+    "address": "https://qa.myhive.in",
+    "reverse_proxy": "http://hive:5173",
+    "active": true,
+    "icon": "i-simple-icons:hive"
+  },
+  {
+    "id": 21,
+    "service": "Grocy QA",
+    "description": "ERP for fridge",
+    "address": "https://grocy.qa.myhive.in",
+    "reverse_proxy": "http://hive:9283",
+    "active": true,
+    "icon": "i-arcticons:grocy"
+  },
+  {
+    "id": 22,
+    "service": "DNS server",
+    "description": "DNS server",
+    "address": "https://dns.myhive.in",
+    "reverse_proxy": "http://hive-vpc:3000",
+    "active": true,
+    "icon": "i-carbon:dns-services"
+  }
+]

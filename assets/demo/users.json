@@ -1,0 +1,37 @@
+[
+  {
+    "Id": "9a80119e-aa4d-4cba-875e-3355fd5ab5b5",
+    "Username": "demo",
+    "Password": "$2b$10$zx9EARqRsFksOGieNgKgFuNKsDsYu63rw0ANJersYFfFbcPY2iwiK",
+    "Displayname": "Demo User",
+    "CreatedAt": "2024-11-25T21:09:26.178Z"
+  },
+  {
+    "Id": "e9c1c380-5ce4-4c72-9f9a-fe6aee48c26d",
+    "Username": "Venky",
+    "Password": "$2b$10$pbn5GCckfGfuarg3MiQMH.fAxLGanQd9g4d.rmbETAsAuemk2ON3K",
+    "Displayname": "Venky",
+    "CreatedAt": "2024-11-25T21:49:17.535Z"
+  },
+  {
+    "Id": "f11476f5-a6ef-46a5-9966-f3743eeb16a3",
+    "Username": "venky",
+    "Password": "$2b$10$iCWbtyhC2WsR3lSbVqQdRuFQYrNDzeccl8RiKEvPFz0VqH7MEOu22",
+    "Displayname": "venky",
+    "CreatedAt": "2024-11-25T21:49:50.425Z"
+  },
+  {
+    "Id": "a81d2581-cb5a-47b5-9cca-be672842d168",
+    "Username": "venkatesh",
+    "Password": "$2b$10$zFfX66IWTkWRu0VvCI35PeothuyMAtsHp.IDNQc/rBiC6zzkv3Lqm",
+    "Displayname": "venkatesh",
+    "CreatedAt": "2024-11-29T18:22:41.594Z"
+  },
+  {
+    "Id": "37467bc3-b82a-4f6e-b6f7-7c7cffefb44e",
+    "Username": "admin",
+    "Password": "$2b$10$rcMXHScF.6shGzF9Z58cUeYndPoakFB1hyzajNZSegKSScoCc2hdK",
+    "Displayname": "admin",
+    "CreatedAt": "2024-11-29T18:22:55.766Z"
+  }
+]
