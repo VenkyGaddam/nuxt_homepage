@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import LastChangesModal from "~/components/common/LastChangesModal.vue";
+
 const colorMode = useColorMode();
 const appConfig = useAppConfig();
 const { init, isAuth, user, logout } = useAuth();
+
+const modal = useModal();
 
 // initialize auth composable
 onBeforeMount(() => {
@@ -14,16 +18,6 @@ watch(isAuth, (value) => {
     navigateTo("/login");
   }
 });
-
-// // Dark mode toggle
-// const isDark = computed({
-//   get() {
-//     return colorMode.preference == "system";
-//   },
-//   set() {
-//     // colorMode.preference = colorMode.preference === "dark" ? "light" : "dark";
-//   },
-// });
 
 const items = [
   [
@@ -91,6 +85,20 @@ const items = [
         </ULink>
 
         <div v-show="isAuth" class="flex flex-row gap-2.5 items-center">
+          <UButton
+            icon="i-bx:health"
+            size="md"
+            square
+            variant="ghost"
+            @click.stop.prevent="
+              () => {
+                modal.open(LastChangesModal, {
+                  onClose: modal.close,
+                });
+              }
+            "
+          />
+
           <UChip>
             <UIcon name="hugeicons:notification-02" class="w-5 h-5" />
           </UChip>
@@ -127,32 +135,3 @@ const items = [
     </div>
   </div>
 </template>
-
-<!-- <div v-show="isLoggedIn" class="flex items-center gap-0.5">
-          <UKbd>⌘</UKbd>
-          <UKbd>K</UKbd>
-        </div> -->
-<!-- <ClientOnly>
-          <UButton
-            :icon="
-              isDark
-                ? 'i-line-md:sunny-filled-loop-to-moon-filled-loop-transition'
-                : 'i-material-symbols:light-mode-rounded'
-            "
-            color="gray"
-            size="md"
-            variant="ghost"
-            aria-label="Theme"
-            @click="isDark = !isDark"
-            :class="{
-              'transition-transform  duration-500 ease-in-out': true,
-              'rotate-90': !isDark,
-              '-rotate-90': isDark,
-              'opacity-100': !isDark,
-              'opacity-70': isDark,
-            }"
-          />
-          <template #fallback>
-            <div class="w-8 h-8" />
-          </template>
-        </ClientOnly> -->

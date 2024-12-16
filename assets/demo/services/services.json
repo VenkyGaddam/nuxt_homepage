@@ -175,7 +175,7 @@
     "service": "Myhive QA",
     "description": "My hive homepage",
     "address": "https://qa.myhive.in",
-    "reverse_proxy": "http://hive:5173",
+    "reverse_proxy": "http://localhost:5173",
     "active": true,
     "icon": "i-simple-icons:hive"
   },
@@ -196,5 +196,14 @@
     "reverse_proxy": "http://hive-vpc:3000",
     "active": true,
     "icon": "i-carbon:dns-services"
+  },
+  {
+    "id": "5f93035a-f5bf-4179-8016-39c37018dd13",
+    "service": "",
+    "description": "",
+    "address": "https://housie.myhive.in",
+    "reverse_proxy": "http://localhost:7549",
+    "active": true,
+    "icon": ""
   }
 ]

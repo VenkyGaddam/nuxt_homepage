@@ -1,9 +1,6 @@
-[![homepage:build](https://github.com/VenkyGaddam/nuxt_homepage/actions/workflows/homepage.yml/badge.svg)](https://github.com/VenkyGaddam/nuxt_homepage/actions/workflows/homepage.yml)
-[![Build Status](https://img.shields.io/github/workflow/status/VenkyGaddam/nuxt_homepage/CI?label=build)](https://github.com/VenkyGaddam/nuxt_homepage/actions)
+[![homepage:build](https://github.com/VenkyGaddam/nuxt_homepage/actions/workflows/homepage.yml/badge.svg?branch=main)](https://github.com/VenkyGaddam/nuxt_homepage/actions/workflows/homepage.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/github/package-json/v/VenkyGaddam/nuxt_homepage)](https://npmjs.com/package/nuxt_homepage)
 [![Issues](https://img.shields.io/github/issues/VenkyGaddam/nuxt_homepage)](https://github.com/VenkyGaddam/nuxt_homepage/issues)
-[![Stars](https://img.shields.io/github/stars/VenkyGaddam/nuxt_homepage?style=social)](https://github.com/VenkyGaddam/nuxt_homepage)
 [![Last Commit](https://img.shields.io/github/last-commit/VenkyGaddam/nuxt_homepage)](https://github.com/VenkyGaddam/nuxt_homepage/commits)
 
 # Nuxt Minimal Starter

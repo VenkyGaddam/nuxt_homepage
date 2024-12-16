@@ -10,6 +10,14 @@ type InputEntry = {
   active: boolean;
 };
 
+type LastUpdateEntry = {
+  key: string;
+  label: string;
+  timestamp: string;
+};
+
+type LastUpdates = LastUpdateEntry[];
+
 export default defineEventHandler(async (event) => {
   // Get the route path from the event
   const routePath = event.node.req.url || "";
@@ -84,6 +92,28 @@ export default defineEventHandler(async (event) => {
 
     // Write the updated data back to the file
     await writeFile(filePath, JSON.stringify(servicesData, null, 2));
+
+    const lastUpdatesPath = resolve("assets/demo/services/last_updates.json");
+    const lastUpdatesData: LastUpdates = JSON.parse(
+      await readFile(lastUpdatesPath, "utf-8")
+    );
+
+    const existingEntryIndex = lastUpdatesData.findIndex(
+      (entry) => entry.key === "services_from_server"
+    );
+    const newTimestamp = new Date().toISOString();
+
+    if (existingEntryIndex !== -1) {
+      lastUpdatesData[existingEntryIndex].timestamp = newTimestamp;
+    } else {
+      lastUpdatesData.push({
+        key: "services_from_server",
+        label: "Services from Server",
+        timestamp: newTimestamp,
+      });
+    }
+
+    await writeFile(lastUpdatesPath, JSON.stringify(lastUpdatesData, null, 2));
 
     return { success: true, message: "Services updated successfully" };
   } catch (error) {
