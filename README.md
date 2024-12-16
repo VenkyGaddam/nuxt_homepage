@@ -1,3 +1,5 @@
+[![homepage:build](https://github.com/VenkyGaddam/nuxt_homepage/actions/workflows/homepage.yml/badge.svg)](https://github.com/VenkyGaddam/nuxt_homepage/actions/workflows/homepage.yml)
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
