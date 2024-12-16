@@ -1,31 +1,33 @@
 # syntax = docker/dockerfile:1
 
+# Stage 1: Build the Nuxt app with Nitro server
 ARG NODE_VERSION=23.3
 
-FROM node:${NODE_VERSION}-slim as base
+FROM node:${NODE_VERSION}-slim as build
 
-ARG PORT=5173
+WORKDIR /app
 
-WORKDIR /
-
-# Build
-FROM base as build
-
+# Copy package files and install dependencies
 COPY --link package.json package-lock.json ./
 RUN npm install
 
+# Copy the rest of the application code and build the Nuxt app
 COPY --link . .
-
 RUN npm run build
 
-# Run
-FROM base
+# Stage 2: Run the Nuxt Nitro server
+FROM node:${NODE_VERSION}-slim as serve
 
-ENV PORT=$PORT
-ENV NODE_ENV=production
+WORKDIR /app
 
-COPY --from=build /.output /.output
-# Optional, only needed if you rely on unbundled dependencies
-# COPY --from=build /src/node_modules /src/node_modules
+# Copy the built application from the build stage
+COPY --from=build /app/.output .
 
-CMD [ "node", ".output/server/index.mjs" ]
+# Install production dependencies (optional, in case of server-side dependencies)
+RUN npm install --production
+
+# Expose the Nitro server port (default is 3000)
+EXPOSE 3000
+
+# Start the Nitro server
+CMD ["node", ".output/server/index.mjs"]
