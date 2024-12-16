@@ -11,6 +11,10 @@ type InputEntry = {
 };
 
 export default defineEventHandler(async (event) => {
+  // Get the route path from the event
+  const routePath = event.node.req.url || "";
+  console.log(`${routePath} - Processing request`);
+
   try {
     // Parse incoming request body
     const body = await readBody(event);
@@ -18,6 +22,8 @@ export default defineEventHandler(async (event) => {
     if (!body) {
       return { success: false, message: "Invalid data" };
     }
+
+    console.log(`${routePath} - ${body}`);
 
     // Split the input by line and parse each line into address, reverse_proxy, and active
     const inputEntries: InputEntry[] = body

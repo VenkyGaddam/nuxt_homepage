@@ -38,7 +38,6 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
       response.message = "Please check the url";
     }
 
-    console.log(`${routePath} - ${JSON.stringify(response)}`);
     // Return the  response
     return response;
   } catch (error) {
