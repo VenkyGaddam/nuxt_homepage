@@ -86,20 +86,51 @@ getDividends();
       :columns="columns"
       :rows="dividends"
       :multiple-expand="false"
+      :ui="{
+        th: {
+          base: 'text-left rtl:text-right',
+          padding: 'px-1 py-4',
+          color: 'text-gray-900 dark:text-white',
+          font: 'font-semibold',
+          size: 'text-sm',
+        },
+        td: {
+          base: 'whitespace-nowrap',
+          padding: 'px-1 py-3',
+          color: 'text-gray-900 dark:text-gray-100',
+          font: '',
+          size: 'text-sm',
+        },
+        expandButton: {
+          icon: 'i-heroicons-chevron-down',
+          color: 'gray',
+          variant: 'ghost',
+          size: 'xs',
+          class: '',
+        },
+      }"
     >
       <template #symbol-data="{ row }">
-        <div class="flex flex-col items-start justify-start">
-          <span class="text-black dark:text-white">{{
-            row.co_name?.trim()
-          }}</span>
+        <div class="flex flex-col items-start justify-start w-36">
+          <span class="truncate">{{ row.co_name?.trim() }}</span>
           <span class="text-xs font-light"
             >{{ row.symbol?.trim() || "" }}
           </span>
         </div>
       </template>
-
+      dividend_amount
+      <template #dividend_amount-data="{ row }">
+        <span>{{ row.dividend_amount }}</span>
+        <span class="text-xs">({{ row.dividend_percentage }}%)</span>
+      </template>
+      <template #announcementdate-data="{ row }">
+        <span>{{ format(new Date(row.announcementdate), "dd MMM yy") }}</span>
+      </template>
       <template #dividend_date-data="{ row }">
         <span>{{ format(new Date(row.dividend_date), "dd MMM yy") }}</span>
+      </template>
+      <template #record_date-data="{ row }">
+        <span>{{ format(new Date(row.record_date), "dd MMM yy") }}</span>
       </template>
       <template #actions-data="{ row }" class="flex flex-col gap-5">
         <UButton
@@ -111,7 +142,9 @@ getDividends();
       </template>
 
       <template #expand="{ row }">
-        <pre class="bg-gray-800 text-white text-xs p-4 whitespace-pre-wrap">
+        <pre
+          class="bg-gray-100 dark:bg-gray-800 text-xs p-4 whitespace-pre-wrap"
+        >
           <code>{{ JSON.stringify(row, null, 2) }}</code>
         </pre>
       </template>

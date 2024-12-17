@@ -12,8 +12,18 @@
     "sortable": true
   },
   {
+    "key": "announcementdate",
+    "label": "Announcement Date",
+    "sortable": true
+  },
+  {
     "key": "dividend_date",
     "label": "Dividend Date",
+    "sortable": true
+  },
+  {
+    "key": "record_date",
+    "label": "Record Date",
     "sortable": true
   }
 ]
