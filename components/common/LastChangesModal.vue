@@ -8,15 +8,21 @@ type LastUpdateEntry = {
 };
 
 const lastUpdates = ref<LastUpdateEntry[]>([]);
+const isLoading = ref(false);
 
 defineProps({
+  preventClose: {
+    type: Boolean,
+    default: false,
+  },
   onClose: {
     type: Function,
-    required: true,
+    required: false,
   },
 });
 
 const fetchData = async () => {
+  isLoading.value = true;
   const response = await $fetch<{
     success: boolean;
     message?: string;
@@ -27,6 +33,7 @@ const fetchData = async () => {
   if (response.success && response.data) {
     lastUpdates.value = response.data;
   }
+  isLoading.value = false;
 };
 
 // Format the timestamp into a readable format (e.g., "5 minutes ago")
@@ -48,26 +55,52 @@ onMounted(() => {
           <span class="text-lg font-semibold text-primary-500"
             >Last Updates</span
           >
+
           <div class="flex flex-row justify-center gap-2">
-            <UButton
-              icon="i-solar:refresh-bold"
-              square
-              variant="ghost"
-              color="gray"
-              @click="fetchData"
-            />
-            <UButton
-              color="gray"
-              variant="ghost"
-              square
-              icon="i-heroicons-x-mark-20-solid"
-              @click="onClose()"
-            />
+            <UTooltip text="Refresh">
+              <UButton
+                :disabled="isLoading"
+                square
+                variant="outline"
+                color="gray"
+                @click="fetchData"
+              >
+                <UIcon
+                  name="i-solar:refresh-bold"
+                  :class="{
+                    'animate-spin bg-primary-500': isLoading,
+                    'h-5 w-5': true,
+                  }"
+                />
+              </UButton>
+            </UTooltip>
+            <UTooltip text="Close">
+              <UButton
+                v-show="onClose != undefined && typeof onClose == 'function'"
+                color="red"
+                variant="outline"
+                square
+                icon="i-heroicons-x-mark-20-solid"
+                @click="
+                  () => {
+                    if (onClose != undefined && typeof onClose == 'function') {
+                      onClose();
+                    }
+                  }
+                "
+              />
+            </UTooltip>
           </div>
         </div>
       </template>
 
-      <div v-if="lastUpdates.length">
+      <div v-if="isLoading" class="space-y-2">
+        <USkeleton class="h-2" />
+        <USkeleton class="h-2" />
+        <USkeleton class="h-2" />
+      </div>
+
+      <div v-else-if="lastUpdates.length">
         <div class="space-y-2">
           <ul>
             <li
@@ -81,8 +114,9 @@ onMounted(() => {
           </ul>
         </div>
       </div>
+
       <div v-else>
-        <p>Loading...</p>
+        <p>No updates available.</p>
       </div>
     </UCard>
   </UModal>

@@ -85,23 +85,32 @@ const items = [
         </ULink>
 
         <div v-show="isAuth" class="flex flex-row gap-2.5 items-center">
-          <UButton
-            icon="i-bx:health"
-            size="md"
-            square
-            variant="ghost"
-            @click.stop.prevent="
-              () => {
-                modal.open(LastChangesModal, {
-                  onClose: modal.close,
-                });
-              }
-            "
-          />
+          <UTooltip text="last updates">
+            <UButton
+              icon="i-bx:health"
+              square
+              variant="ghost"
+              @click.stop.prevent="
+                () => {
+                  modal.open(LastChangesModal, {
+                    onClose: modal.close,
+                  });
+                }
+              "
+            />
+          </UTooltip>
 
-          <UChip>
-            <UIcon name="hugeicons:notification-02" class="w-5 h-5" />
-          </UChip>
+          <UTooltip text="Notifications">
+            <UChip inset>
+              <UButton
+                icon="i-hugeicons:notification-02"
+                variant="ghost"
+                color="gray"
+                suqre
+              />
+            </UChip>
+          </UTooltip>
+
           <UDropdown
             :items="items"
             :ui="{ item: { disabled: 'cursor-text select-text' } }"
