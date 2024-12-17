@@ -1,10 +1,16 @@
 <script setup lang="ts">
 // varibale declarations
-const toast = useToast();
+import { format } from "date-fns";
+
 const modal = useModal();
 
 const dividends = ref<Dividends[]>([]);
 const columns = ref<Column[]>([]);
+
+const expand = ref({
+  openedRows: [],
+  row: null,
+});
 
 // methods
 const getDividends = async () => {
@@ -67,21 +73,20 @@ getDividends();
 </script>
 
 <template>
-  <UCard
-    class="w-full overflow-scroll overscroll-contain shadow h-[30rem] lg:w-1/2"
+  <UContainer
+    class="relative"
     :ui="{
-      base: '',
-      ring: '',
-      divide: 'divide-y divide-gray-200 dark:divide-gray-700',
-      header: { padding: 'px-4 py-3' },
-      body: {
-        padding: '',
-        base: 'divide-y divide-gray-200 dark:divide-gray-700',
-      },
-      footer: { padding: 'p-4' },
+      base: 'mx-auto',
+      padding: 'px-0',
+      constrained: 'max-w-dvw min-h-dvh',
     }"
   >
-    <UTable :columns="columns" :rows="dividends">
+    <UTable
+      v-model:expand="expand"
+      :columns="columns"
+      :rows="dividends"
+      :multiple-expand="false"
+    >
       <template #symbol-data="{ row }">
         <div class="flex flex-col items-start justify-start">
           <span class="text-black dark:text-white">{{
@@ -92,6 +97,10 @@ getDividends();
           </span>
         </div>
       </template>
+
+      <template #dividend_date-data="{ row }">
+        <span>{{ format(new Date(row.dividend_date), "dd MMM yy") }}</span>
+      </template>
       <template #actions-data="{ row }" class="flex flex-col gap-5">
         <UButton
           color="blue"
@@ -100,6 +109,12 @@ getDividends();
         />
         <UButton color="red" icon="i-heroicons-trash-20-solid" @click="" />
       </template>
+
+      <template #expand="{ row }">
+        <pre class="bg-gray-800 text-white text-xs p-4 whitespace-pre-wrap">
+          <code>{{ JSON.stringify(row, null, 2) }}</code>
+        </pre>
+      </template>
     </UTable>
-  </UCard>
+  </UContainer>
 </template>

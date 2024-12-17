@@ -39,10 +39,10 @@ export default defineAppConfig({
       thead: "",
 
       default: {
-        sortAscIcon: "i-octicon-sort-asc-24",
-        sortDescIcon: "i-octicon-sort-desc-24",
+        sortAscIcon: "i-heroicons-arrow-up-20-solid",
+        sortDescIcon: "i-heroicons-arrow-down-20-solid",
         sortButton: {
-          icon: "i-octicon-arrow-switch-24",
+          icon: "i-heroicons-sparkles-20-solid",
         },
         loadingState: {
           icon: "i-hugeicons:loading-03",

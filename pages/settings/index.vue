@@ -67,7 +67,7 @@ const links = [
   <div class="flex flex-col gap-5 mx-0 my-5 lg:mx-5 overflow-auto md:flex-row">
     <div class="w-full md:w-[24rem]">
       <div
-        class="w-full px-2.5"
+        class="w-full px-2.5 mb-4"
         @click="$device.isMobile ? (hideOptions = !hideOptions) : ''"
       >
         <span class="text-2xl font-semibold tracking-tighter text-primary-500">
@@ -87,7 +87,7 @@ const links = [
           :links="links"
           :ui="{
             font: 'font-small',
-            size: 'text-lg',
+            size: 'text-md',
             padding: 'px-3 py-1.5',
             active:
               'text-gray-900 dark:text-white before:bg-primary-100 dark:before:bg-primary-800',

@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   modules: ["@nuxt/ui", "@nuxtjs/color-mode", "@nuxtjs/device"],
   runtimeConfig: {
     apiSecret: "", // can be overridden by NUXT_API_SECRET environment variable

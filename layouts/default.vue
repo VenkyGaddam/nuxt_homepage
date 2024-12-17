@@ -29,6 +29,13 @@ const items = [
   ],
   [
     {
+      label: "Dividends",
+      icon: "i-emojione-v1:stock-chart",
+      click: () => {
+        navigateTo("/services");
+      },
+    },
+    {
       label: "Settings",
       icon: "i-heroicons-cog-8-tooth",
       click: () => {
@@ -66,7 +73,7 @@ const items = [
 <template>
   <div class="min-h-dvh flex flex-col">
     <div
-      class="sticky top-0 shadow py-2 lg:py-2 px-2 lg:mr-2 backdrop-blur-md z-10"
+      class="sticky top-0 shadow py-2 lg:py-2 px-2 lg:pr-2 backdrop-blur-md z-10"
     >
       <div class="flex flex-row gap-2 items-center justify-between">
         <ULink to="/">

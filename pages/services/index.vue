@@ -1,3 +1,3 @@
 <template>
-  <p>Index page of services</p>
+  <StocksDividends class="w-full overflow-auto" />
 </template>

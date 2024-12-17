@@ -2,13 +2,13 @@
   {
     "key": "symbol",
     "label": "Stock Symbol",
-    "sortable": true,
+    "sortable": false,
     "class": "w-[10rem] truncate",
     "rowClass": "w-[10rem] truncate"
   },
   {
     "key": "dividend_amount",
-    "label": "Dividend Amount",
+    "label": "Amount",
     "sortable": true
   },
   {

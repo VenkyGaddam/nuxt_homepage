@@ -1,9 +1,6 @@
-<script setup lang="ts">
-import Dividends from "~/components/Stocks/Dividends.vue";
-</script>
+<script setup lang="ts"></script>
 <template>
-  <div class="w-full">
+  <div class="w-full overflow-hidden">
     <ServicesTable />
-    <!-- <Dividends /> -->
   </div>
 </template>
