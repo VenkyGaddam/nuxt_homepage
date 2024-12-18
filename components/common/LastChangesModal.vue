@@ -94,14 +94,14 @@ onMounted(() => {
         </div>
       </template>
 
-      <div v-if="isLoading" class="space-y-2">
+      <div v-if="isLoading" class="space-y-2 min-h-[5rem]">
         <USkeleton class="h-2" />
         <USkeleton class="h-2" />
         <USkeleton class="h-2" />
       </div>
 
       <div v-else-if="lastUpdates.length">
-        <div class="space-y-2">
+        <div class="space-y-2 min-h-[5rem]">
           <ul>
             <li
               v-for="entry in lastUpdates"
@@ -115,7 +115,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <div v-else>
+      <div v-else class="min-h-[5rem]">
         <p>No updates available.</p>
       </div>
     </UCard>

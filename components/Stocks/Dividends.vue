@@ -6,6 +6,7 @@ const modal = useModal();
 
 const dividends = ref<Dividends[]>([]);
 const columns = ref<Column[]>([]);
+const loading = ref(true);
 
 const expand = ref({
   openedRows: [],
@@ -14,9 +15,10 @@ const expand = ref({
 
 // methods
 const getDividends = async () => {
+  loading.value = true;
   try {
     const response = await $fetch<ApiResponse>("api/v1/stocks?year=2024");
-
+    loading.value = false;
     // Check if the response is successful and contains the expected data
     if (response.success) {
       dividends.value = response.data.dividends || [];
@@ -85,6 +87,7 @@ getDividends();
       v-model:expand="expand"
       :columns="columns"
       :rows="dividends"
+      :loading="loading"
       :multiple-expand="false"
       :ui="{
         th: {
@@ -107,12 +110,13 @@ getDividends();
           variant: 'ghost',
           size: 'xs',
           class: '',
+          ui: { font: 'font-semibold' },
         },
       }"
     >
-      <template #symbol-data="{ row }">
+      <template #companyshortname-data="{ row }">
         <div class="flex flex-col items-start justify-start w-36">
-          <span class="truncate">{{ row.co_name?.trim() }}</span>
+          <span class="truncate">{{ row.companyshortname?.trim() }}</span>
           <span class="text-xs font-light"
             >{{ row.symbol?.trim() || "" }}
           </span>

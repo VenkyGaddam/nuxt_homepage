@@ -1,3 +1,3 @@
 <template>
-  <StocksDividends class="w-full overflow-auto" />
+  <ServicesTable class="w-full overflow-auto" />
 </template>

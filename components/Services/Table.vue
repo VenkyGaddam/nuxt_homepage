@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ServiceEditSlideover from "./ServiceEditSlideover.vue";
+import ServiceEditSlideover from "./EditSlideover.vue";
 
 // replaced with global auth
 // definePageMeta({

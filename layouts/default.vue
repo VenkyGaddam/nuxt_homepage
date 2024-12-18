@@ -32,7 +32,7 @@ const items = [
       label: "Dividends",
       icon: "i-emojione-v1:stock-chart",
       click: () => {
-        navigateTo("/services");
+        navigateTo("/stocks");
       },
     },
     {

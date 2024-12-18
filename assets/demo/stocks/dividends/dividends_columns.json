@@ -1,10 +1,8 @@
 [
   {
-    "key": "symbol",
-    "label": "Stock Symbol",
-    "sortable": false,
-    "class": "w-[10rem] truncate",
-    "rowClass": "w-[10rem] truncate"
+    "key": "companyshortname",
+    "label": "Stock",
+    "sortable": false
   },
   {
     "key": "dividend_amount",
