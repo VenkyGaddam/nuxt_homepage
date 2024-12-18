@@ -15,8 +15,6 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
   const query = getQuery(event);
 
   try {
-    console.log(`${routePath} - ${query.q}`);
-
     if (query.q == "columns") {
       const columnsFilePath = resolve(
         "assets/demo/services/services_columns.json"

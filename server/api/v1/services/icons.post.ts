@@ -12,9 +12,6 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
     // Resolve the path to the icons file
     const filePath = resolve("assets/demo/services/icons.json");
 
-    // Log the file path
-    console.log("API - Adding new icon. File path:", filePath);
-
     // Read the existing icons from the file
     const icons: string[] = JSON.parse(await readFile(filePath, "utf-8"));
 
@@ -36,9 +33,6 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     // Write the updated icons list back to the file
     await writeFile(filePath, JSON.stringify(icons, null, 2), "utf-8");
-
-    // Log success
-    console.log("API - Icon added successfully:", newIcon);
 
     // Return success response
     return { success: true, message: "Icon added successfully" };

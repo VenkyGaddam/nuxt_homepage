@@ -28,7 +28,6 @@ const fetchData = async () => {
     message?: string;
     data?: LastUpdateEntry[];
   }>("/api/v1/utilities/last-updates");
-  console.log(JSON.stringify(response));
 
   if (response.success && response.data) {
     lastUpdates.value = response.data;

@@ -16,7 +16,6 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
     // Get the query parameter from the request
     const query = getQuery(event).query?.toString().toLowerCase() || "";
-    console.log(`${routePath}: Query = ${query} `);
     // Check if query is provided
     // if (!query) {
     //   return { success: false, message: "Query parameter is required" };
@@ -27,7 +26,6 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
       .filter((icon) => icon.toLowerCase().includes(query))
       .slice(0, 10);
 
-    console.log(`${routePath}: matchedIcons = ${matchedIcons} `);
     // Return the matched icons
     return {
       success: true,

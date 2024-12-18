@@ -7,19 +7,16 @@ declare global {
     CreatedAt: string;
   };
 
-  type ClientUser = {
-    Id: string;
-    Username: string;
-    Displayname?: string;
-  };
-
-  type DecodedToken = {
+  type UserPayload = {
     id: string;
     username: string;
     displayname: string;
-    iat: number;
-    exp: number;
   };
+
+  interface DecodedToken extends UserPayload {
+    exp: number;
+    iat: number;
+  }
 }
 
 export {};

@@ -5,111 +5,67 @@ import jwt from "jsonwebtoken";
 
 const runtimeConfig = useRuntimeConfig();
 const JWT_SECRET = runtimeConfig.jwtToken;
-const JWT_REFRESH_SECRET = runtimeConfig.jwtRefreshToken; // Refresh token secret
+const JWT_REFRESH_SECRET = runtimeConfig.jwtRefreshToken;
+const TOKEN_EXPIRY = "1h";
+const REFRESH_TOKEN_EXPIRY = "7d";
 
-export default defineEventHandler(async (event): Promise<ApiResponse> => {
-  const { username, password } = await readBody(event);
+export default defineEventHandler(async (event) => {
+  // Get the route path from the event
+  const routePath = event.node.req.url || "";
+  console.log(`${routePath} - Processing request`);
 
-  if (!username || !password) {
-    return {
-      success: false,
-      message: "Username and password are required",
-    };
-  }
+  const { username, password } = await readBody<
+    Partial<{ username: string; password: string }>
+  >(event);
+  if (!username || !password)
+    return { success: false, message: "Username and password are required" };
 
   const usersFilePath = resolve("assets/demo/users.json");
-  let users: User[] = [];
-
-  try {
-    // Load existing users
-    users = JSON.parse(await readFile(usersFilePath, "utf-8"));
-  } catch (error) {
-    console.error("Error reading users file:", error);
-  }
-
-  // Find the user in the JSON data
+  const users: User[] = JSON.parse(await readFile(usersFilePath, "utf-8"));
   const existingUser = users.find((u) => u.Username === username);
 
-  if (existingUser) {
-    // Validate the password
-    const validPassword = await bcrypt.compare(password, existingUser.Password);
-
-    if (!validPassword) {
-      return {
-        success: false,
-        message: "Invalid password",
-      };
-    }
-
-    // Check for duplicate user ID
-    const userById = users.find((u) => u.Id === existingUser.Id);
-    if (userById) {
-      // Create new tokens
-      const token = jwt.sign(
-        {
-          id: userById.Id,
-          username: userById.Username,
-          displayname: userById.Displayname,
-        },
-        JWT_SECRET,
-        { expiresIn: "1h" }
-      );
-
-      const refreshToken = jwt.sign(
-        { id: userById.Id, username: userById.Username },
-        JWT_REFRESH_SECRET,
-        { expiresIn: "7d" }
-      );
-
-      return {
-        success: true,
-        data: { token, refreshToken },
-      };
-    }
+  if (
+    !existingUser ||
+    !(await bcrypt.compare(password, existingUser.Password))
+  ) {
+    return { success: false, message: "Invalid username or password" };
   }
 
-  // Create a new user
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser: User = {
-    Id: crypto.randomUUID(),
-    Username: username,
-    Password: hashedPassword,
-    Displayname: username,
-    CreatedAt: new Date().toISOString(),
-  };
-
-  users.push(newUser);
-
-  try {
-    // Save the updated users list
-    await writeFile(usersFilePath, JSON.stringify(users, null, 2), "utf-8");
-  } catch (error) {
-    console.error("Error writing users file:", error);
-    return {
-      success: false,
-      message: "Failed to create user",
-    };
-  }
-
-  // Generate tokens
-  const token = jwt.sign(
+  const accessToken = jwt.sign(
     {
-      id: newUser.Id,
-      username: newUser.Username,
-      displayname: newUser.Displayname,
+      id: existingUser.Id,
+      username: existingUser.Username,
+      displayname: existingUser.Displayname,
     },
     JWT_SECRET,
-    { expiresIn: "12h" }
+    { expiresIn: TOKEN_EXPIRY }
   );
 
   const refreshToken = jwt.sign(
-    { id: newUser.Id, username: newUser.Username },
+    { id: existingUser.Id, username: existingUser.Username },
     JWT_REFRESH_SECRET,
-    { expiresIn: "7d" }
+    { expiresIn: REFRESH_TOKEN_EXPIRY }
   );
+
+  setCookie(event, "auth_token", accessToken, {
+    httpOnly: true, // Not accessible via JavaScript
+    secure: true, // Only sent over HTTPS
+    sameSite: "strict", // Ensures the cookie is sent with same-origin requests
+    path: "/", // Available across the entire app
+    maxAge: 60 * 60,
+  });
+
+  setCookie(event, "refresh_token", refreshToken, {
+    httpOnly: true, // Not accessible via JavaScript
+    secure: true, // Only sent over HTTPS
+    sameSite: "strict", // Ensures the cookie is sent with same-origin requests
+    path: "/", // Available across the entire app
+    maxAge: 60 * 60 * 24 * 7,
+  });
 
   return {
     success: true,
-    data: { token, refreshToken },
+    message: "Login successful",
+    data: { accessToken, refreshToken },
   };
 });

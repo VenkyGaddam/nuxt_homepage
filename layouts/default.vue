@@ -3,20 +3,12 @@ import LastChangesModal from "~/components/common/LastChangesModal.vue";
 
 const colorMode = useColorMode();
 const appConfig = useAppConfig();
-const { init, isAuth, user, logout } = useAuth();
+const { user, fetchUser, logout } = useAuth();
 
 const modal = useModal();
 
-// initialize auth composable
-onBeforeMount(() => {
-  if (import.meta.client) init();
-});
-
-watch(isAuth, (value) => {
-  // checking changed value
-  if (!value) {
-    navigateTo("/login");
-  }
+onMounted(() => {
+  fetchUser();
 });
 
 const items = [
@@ -91,7 +83,7 @@ const items = [
           </div>
         </ULink>
 
-        <div v-show="isAuth" class="flex flex-row gap-2.5 items-center">
+        <div v-if="user" class="flex flex-row gap-2.5 items-center">
           <UTooltip text="last updates">
             <UButton
               icon="i-bx:health"
@@ -123,13 +115,13 @@ const items = [
             :ui="{ item: { disabled: 'cursor-text select-text' } }"
             :popper="{ placement: 'bottom-start' }"
           >
-            <UAvatar size="md" src="" :alt="user?.Displayname" />
+            <UAvatar size="md" src="" :alt="user?.displayname" />
 
             <template #account="{ item }">
               <div class="text-left">
                 <p>Signed in as</p>
                 <p class="truncate font-medium text-gray-900 dark:text-white">
-                  {{ user?.Displayname ? user.Displayname : user?.Username }}
+                  {{ user?.displayname ? user.displayname : user?.username }}
                 </p>
               </div>
             </template>

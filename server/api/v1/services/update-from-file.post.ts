@@ -31,8 +31,6 @@ export default defineEventHandler(async (event) => {
       return { success: false, message: "Invalid data" };
     }
 
-    console.log(`${routePath} - ${body}`);
-
     // Split the input by line and parse each line into address, reverse_proxy, and active
     const inputEntries: InputEntry[] = body
       .trim()

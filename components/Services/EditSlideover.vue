@@ -68,7 +68,7 @@ const labels = computed({
       if (!label.startsWith("i-")) {
         label = `i-${label}`;
       }
-      console.log("Updated label:", label);
+
       try {
         // Make the POST request
         const response: any = await $fetch("/api/v1/services/icons", {
@@ -79,7 +79,6 @@ const labels = computed({
         // Update the state only on successful response
         if (response.success) {
           service_state.icon = label;
-          console.log("Icon added successfully:", label);
         } else {
           console.error("Failed to add icon:", response.message);
         }
